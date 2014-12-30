@@ -4,9 +4,9 @@ namespace mespinosaz\DataPublisher\Publisher;
 
 use mespinosaz\DataPublisher\Publisher;
 
-class File extends Publisher
+class Filesystem extends Publisher
 {
-    public function __construct(Publisher\Configuration\File $configuration)
+    public function __construct(Publisher\Configuration\Filesystem $configuration)
     {
         parent::__construct($configuration);
     }

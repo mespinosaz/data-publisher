@@ -4,7 +4,7 @@ namespace mespinosaz\DataPublisher\Publisher\Configuration;
 
 use mespinosaz\DataPublisher\Publisher\Configuration;
 
-class File implements Configuration
+class Filesystem implements Configuration
 {
     private $path;
 

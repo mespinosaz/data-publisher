@@ -4,16 +4,16 @@ namespace mespinosaz\DataPublisher\Tests;
 
 use mespinosaz\DataPublisher\Publisher;
 
-class FilePublisherTest extends \PHPUnit_Framework_TestCase
+class FilesystemPublisherTest extends \PHPUnit_Framework_TestCase
 {
     private $publisher;
 
-    const TEST_FILE_PATH = '/tmp/file_publisher_test.txt';
+    const TEST_FILE_PATH = '/tmp/filesystem_publisher_test.txt';
 
     public function setUp()
     {
-        $configuration = new Publisher\Configuration\File(self::TEST_FILE_PATH);
-        $this->publisher = new Publisher\File($configuration);
+        $configuration = new Publisher\Configuration\Filesystem(self::TEST_FILE_PATH);
+        $this->publisher = new Publisher\Filesystem($configuration);
     }
 
     public function testFile()
