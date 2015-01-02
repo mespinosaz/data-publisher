@@ -2,11 +2,10 @@
 
 namespace mespinosaz\DataPublisher\Publisher\Configuration;
 
-use mespinosaz\DataPublisher\Publisher\Configuration;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\AbstractAdapter;
 
-class Storage implements Configuration
+class Storage implements AbstractConfiguration
 {
     protected $storage;
     protected $path;

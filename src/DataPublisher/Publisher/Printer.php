@@ -2,13 +2,11 @@
 
 namespace mespinosaz\DataPublisher\Publisher;
 
-use mespinosaz\DataPublisher\Publisher;
-
-class Printer extends Publisher
+class Printer extends AbstractPublisher
 {
     public function __construct()
     {
-        $this->setupConfiguration(new Publisher\Configuration\Null());
+        $this->setupConfiguration(new Configuration\Null());
     }
 
     public function publish($content)

@@ -2,14 +2,13 @@
 
 namespace mespinosaz\DataPublisher\Publisher;
 
-use mespinosaz\DataPublisher\Publisher;
 use League\Flysystem\Config;
 
-class Storage extends Publisher
+class Storage extends AbstractPublisher
 {
     private $storage;
 
-    public function __construct(Publisher\Configuration\Storage $configuration)
+    public function __construct(Configuration\Storage $configuration)
     {
         parent::__construct($configuration);
         $this->storage = $this->configuration->getStorage();
