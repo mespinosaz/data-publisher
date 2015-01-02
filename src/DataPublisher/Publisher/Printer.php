@@ -14,5 +14,6 @@ class Printer extends Publisher
     public function publish($content)
     {
         echo print_r($content, true);
+        return true;
     }
 }

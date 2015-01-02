@@ -3,6 +3,7 @@
 namespace mespinosaz\DataPublisher\Tests;
 
 use mespinosaz\DataPublisher\Publisher;
+use League\Flysystem\Adapter;
 
 class FilesystemPublisherTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,7 +13,8 @@ class FilesystemPublisherTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $configuration = new Publisher\Configuration\Filesystem(self::TEST_FILE_PATH);
+        $adapter = new Adapter\Local('/');
+        $configuration = new Publisher\Configuration\Storage($adapter, self::TEST_FILE_PATH);
         $this->publisher = new Publisher\Storage($configuration);
     }
 

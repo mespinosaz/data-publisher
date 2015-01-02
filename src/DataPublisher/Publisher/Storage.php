@@ -20,10 +20,9 @@ class Storage extends Publisher
         $path = $this->configuration->getFilePath();
         $config = new Config();
         try {
-            $this->storage->write($path, $content, $config);
+            return $this->storage->write($path, $content, $config);
         } catch (FileExistsException $e) {
-            $this->storage->update($path, $content, $config);
+            return $this->storage->update($path, $content, $config);
         }
-
     }
 }
