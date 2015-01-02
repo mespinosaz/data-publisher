@@ -2,16 +2,18 @@
 
 namespace mespinosaz\DataPublisher\Publisher;
 
+use mespinosaz\DataPublisher\Publisher\Configuration\AbstractConfiguration;
+
 abstract class AbstractPublisher
 {
     protected $configuration;
 
-    public function __construct(Configuration\AbstractConfiguration $configuration)
+    public function __construct(AbstractConfiguration $configuration)
     {
         $this->setupConfiguration($configuration);
     }
 
-    protected function setupConfiguration(Configuration\AbstractConfiguration $configuration)
+    protected function setupConfiguration(AbstractConfiguration $configuration)
     {
         $this->configuration = $configuration;
     }

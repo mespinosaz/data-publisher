@@ -2,8 +2,8 @@
 
 namespace mespinosaz\DataPublisher\Tests;
 
-use mespinosaz\DataPublisher\Publisher;
-use League\Flysystem\Adapter;
+use mespinosaz\DataPublisher\Publisher\Configuration\Filesystem as Configuration;
+use mespinosaz\DataPublisher\Publisher\Filesystem as Publisher;
 
 class FtpPublisherTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,8 +15,8 @@ class FtpPublisherTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $adapter = $this->setupFtpMock();
-        $configuration = new Publisher\Configuration\Storage($adapter, self::TEST_FILE_PATH);
-        $this->publisher = new Publisher\Storage($configuration);
+        $configuration = new Configuration($adapter, self::TEST_FILE_PATH);
+        $this->publisher = new Publisher($configuration);
     }
 
     private function setupFtpMock()

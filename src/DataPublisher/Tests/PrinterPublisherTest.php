@@ -2,7 +2,7 @@
 
 namespace mespinosaz\DataPublisher\Tests;
 
-use mespinosaz\DataPublisher\Publisher;
+use mespinosaz\DataPublisher\Publisher\Printer as Publisher;
 
 class PrinterPublisherTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,7 +10,7 @@ class PrinterPublisherTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->publisher = new Publisher\Printer();
+        $this->publisher = new Publisher();
     }
 
     public function testPrintString()
