@@ -12,13 +12,13 @@ class Filesystem implements AbstractConfiguration
 
     public function __construct(AbstractAdapter $adapter, $path)
     {
-        $this->filesystem = new FilesystemStorage($adapter);
+        $this->storage = new FilesystemStorage($adapter);
         $this->path = $path;
     }
 
-    public function getFilesystem()
+    public function getStorage()
     {
-        return $this->filesystem;
+        return $this->storage;
     }
 
     public function getFilePath()

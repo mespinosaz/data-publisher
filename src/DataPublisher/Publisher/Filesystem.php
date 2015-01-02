@@ -7,12 +7,12 @@ use mespinosaz\DataPublisher\Publisher\Configuration\Filesystem as FilesystemCon
 
 class Filesystem extends AbstractPublisher
 {
-    private $filesystem;
+    private $storage;
 
     public function __construct(FilesystemConfiguration $configuration)
     {
         parent::__construct($configuration);
-        $this->filesystem = $this->configuration->getFilesystem();
+        $this->storage = $this->configuration->getStorage();
     }
 
     public function publish($content)
@@ -20,9 +20,9 @@ class Filesystem extends AbstractPublisher
         $path = $this->configuration->getFilePath();
         $config = new Config();
         try {
-            return $this->filesystem->write($path, $content, $config);
+            return $this->storage->write($path, $content, $config);
         } catch (FileExistsException $e) {
-            return $this->filesystem->update($path, $content, $config);
+            return $this->storage->update($path, $content, $config);
         }
     }
 }
