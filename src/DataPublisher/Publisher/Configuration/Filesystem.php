@@ -8,9 +8,11 @@ use League\Flysystem\Adapter\Local as Adapter;
 
 class Filesystem extends Storage
 {
+    const ROOT_PATH = '/';
+
     public function __construct($path)
     {
-        $this->storage = new FilesystemStorage(new Adapter('/'));
+        $this->storage = new FilesystemStorage(new Adapter(self::ROOT_PATH));
         $this->path = $path;
     }
 

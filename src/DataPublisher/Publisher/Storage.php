@@ -17,10 +17,12 @@ class Storage extends Publisher
 
     public function publish($content)
     {
+        $path = $this->configuration->getFilePath();
+        $config = new Config();
         try {
-            $this->storage->write($this->configuration->getFilePath(), $content, new Config());
+            $this->storage->write($path, $content, $config);
         } catch (FileExistsException $e) {
-            $this->storage->update($this->configuration->getFilePath(), $content, new Config());
+            $this->storage->update($path, $content, $config);
         }
 
     }
