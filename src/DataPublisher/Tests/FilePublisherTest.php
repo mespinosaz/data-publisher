@@ -13,7 +13,7 @@ class FilesystemPublisherTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $configuration = new Publisher\Configuration\Filesystem(self::TEST_FILE_PATH);
-        $this->publisher = new Publisher\Filesystem($configuration);
+        $this->publisher = new Publisher\Storage($configuration);
     }
 
     public function testFile()

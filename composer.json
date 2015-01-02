@@ -4,7 +4,8 @@
         "psr-4": {"mespinosaz\\": "src/"}
     },
     "require": {
-        "phpunit/phpunit": "4.4.0"
+        "phpunit/phpunit": "4.4.0",
+        "league/flysystem": "0.3.0"
     },
     "license": "GPL",
     "authors": [

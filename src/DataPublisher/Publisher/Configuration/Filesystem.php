@@ -3,18 +3,15 @@
 namespace mespinosaz\DataPublisher\Publisher\Configuration;
 
 use mespinosaz\DataPublisher\Publisher\Configuration;
+use League\Flysystem\Filesystem as FilesystemStorage;
+use League\Flysystem\Adapter\Local as Adapter;
 
-class Filesystem implements Configuration
+class Filesystem extends Storage
 {
-    private $path;
-
     public function __construct($path)
     {
+        $this->storage = new FilesystemStorage(new Adapter('/'));
         $this->path = $path;
     }
 
-    public function getPath()
-    {
-        return $this->path;
-    }
 }
