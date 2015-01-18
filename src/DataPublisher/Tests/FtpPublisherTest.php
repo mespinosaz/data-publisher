@@ -51,5 +51,4 @@ class FtpPublisherTest extends \PHPUnit_Framework_TestCase
         $result = $this->publisher->publish($content);
         $this->assertTrue($result);
     }
-
 }
