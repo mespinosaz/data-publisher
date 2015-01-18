@@ -11,6 +11,9 @@ class Printer extends AbstractPublisher
         $this->setupConfiguration(new Configuration());
     }
 
+    /**
+     * @param string $content
+     */
     public function publish($content)
     {
         echo print_r($content, true);

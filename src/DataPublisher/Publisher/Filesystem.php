@@ -7,14 +7,23 @@ use mespinosaz\DataPublisher\Publisher\Configuration\Filesystem as FilesystemCon
 
 class Filesystem extends AbstractPublisher
 {
+    /**
+     * @var League\Flysystem\Filesystem $storage
+     */
     private $storage;
 
+    /**
+     * @param FilesystemConfiguration $configuration
+     */
     public function __construct(FilesystemConfiguration $configuration)
     {
         parent::__construct($configuration);
         $this->storage = $this->configuration->getStorage();
     }
 
+    /**
+     * @param string $content
+     */
     public function publish($content)
     {
         $path = $this->configuration->getFilePath();
