@@ -27,5 +27,4 @@ class FilesystemPublisherTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($content, $result);
         unlink(self::TEST_FILE_PATH);
     }
-
 }
