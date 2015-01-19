@@ -5,7 +5,7 @@ namespace mespinosaz\DataPublisher\Publisher\Configuration;
 use League\Flysystem\Filesystem as FilesystemStorage;
 use League\Flysystem\Adapter\AbstractAdapter;
 
-class Filesystem implements AbstractConfiguration
+class Filesystem extends AbstractConfiguration
 {
     /**
      * @var League\Flysystem\Filesystem $storage

@@ -2,6 +2,6 @@
 
 namespace mespinosaz\DataPublisher\Publisher\Configuration;
 
-interface AbstractConfiguration
+abstract class AbstractConfiguration
 {
 }
