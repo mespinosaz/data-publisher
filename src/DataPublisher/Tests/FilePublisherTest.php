@@ -2,29 +2,103 @@
 
 namespace mespinosaz\DataPublisher\Tests;
 
+use League\Flysystem\Adapter\Local;
+use League\Flysystem\FileExistsException;
 use mespinosaz\DataPublisher\Publisher\Configuration\Filesystem as Configuration;
 use mespinosaz\DataPublisher\Publisher\Filesystem as Publisher;
-use League\Flysystem\Adapter\Local as Adapter;
 
 class FilesystemPublisherTest extends \PHPUnit_Framework_TestCase
 {
-    private $publisher;
+    const TEST_FILE_PATH = '/path/to/file';
 
-    const TEST_FILE_PATH = '/tmp/filesystem_publisher_test.txt';
-
-    public function setUp()
+    public function testWriteFile()
     {
-        $adapter = new Adapter('/');
-        $configuration = new Configuration($adapter);
-        $this->publisher = new Publisher($configuration);
+        $publisher = $this->getWritePublisherMock();
+
+        $content = '<foo>bar</foo>';
+        $result = $publisher->publish($content, self::TEST_FILE_PATH);
+
+        $this->assertTrue($result);
     }
 
-    public function testFile()
+    public function testUpdateFile()
     {
+        $publisher = $this->getUpdatePublisherMock();
+
         $content = '<foo>bar</foo>';
-        $this->publisher->publish($content, self::TEST_FILE_PATH);
-        $result = file_get_contents(self::TEST_FILE_PATH);
-        $this->assertEquals($content, $result);
-        unlink(self::TEST_FILE_PATH);
+        $result = $publisher->publish($content, self::TEST_FILE_PATH);
+
+        $this->assertTrue($result);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testInvalidArgumentException()
+    {
+        $publisher = $this->getInvalidExceptionPublisherMock();
+
+        $content = '<foo>bar</foo>';
+        $publisher->publish($content);
+    }
+
+    public function getWritePublisherMock()
+    {
+        $adapter = new Local('/');
+        $configuration = new Configuration($adapter);
+
+        $storage = $this->getStoreMock($adapter);
+
+        $storage->expects($this->once())
+            ->method('write')
+            ->will($this->returnValue(true));
+
+        $configuration->setStorage($storage);
+
+        $publisher = new Publisher($configuration);
+        return $publisher;
+    }
+
+    public function getInvalidExceptionPublisherMock()
+    {
+        $adapter = new Local('/');
+        $configuration = new Configuration($adapter);
+
+        $storage = $this->getStoreMock($adapter);
+
+        $configuration->setStorage($storage);
+
+        $publisher = new Publisher($configuration);
+        return $publisher;
+    }
+
+    public function getUpdatePublisherMock()
+    {
+        $adapter = new Local('/');
+        $configuration = new Configuration($adapter);
+
+        $storage = $this->getStoreMock($adapter);
+
+        $storage->expects($this->once())
+            ->method('write')
+            ->willThrowException(new FileExistsException('Whatever'));
+
+        $storage->expects($this->once())
+            ->method('update')
+            ->will($this->returnValue(true));
+
+        $configuration->setStorage($storage);
+
+        $publisher = new Publisher($configuration);
+        return $publisher;
+    }
+
+    public function getStoreMock($adapter)
+    {
+        $storage = $this->getMockBuilder('\League\Flysystem\Filesystem')
+            ->setConstructorArgs(array($adapter))
+            ->setMethods(array('write', 'update'))
+            ->getMock();
+        return $storage;
     }
 }

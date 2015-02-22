@@ -26,6 +26,14 @@ class Filesystem extends AbstractConfiguration
     }
 
     /**
+     * @param FilesystemStorage $storage
+     */
+    public function setStorage(FilesystemStorage $storage)
+    {
+        $this->storage = $storage;
+    }
+
+    /**
      * @return \League\Flysystem\Filesystem
      */
     public function getStorage()
