@@ -3,18 +3,16 @@
 namespace mespinosaz\DataPublisher\Publisher;
 
 use League\Flysystem\Config;
+use League\Flysystem\FileExistsException;
 use mespinosaz\DataPublisher\Publisher\Configuration\Filesystem as FilesystemConfiguration;
 
 class Filesystem extends AbstractPublisher
 {
     /**
-     * @var League\Flysystem\Filesystem $storage
+     * @var \League\Flysystem\Filesystem $storage
      */
     private $storage;
 
-    /**
-     * @param FilesystemConfiguration $configuration
-     */
     public function __construct(FilesystemConfiguration $configuration)
     {
         parent::__construct($configuration);
@@ -23,10 +21,16 @@ class Filesystem extends AbstractPublisher
 
     /**
      * @param string $content
+     * @param string $path
+     * @return bool
+     * @throws \InvalidArgumentException
+     * @throws \League\Flysystem\FileNotFoundException
      */
-    public function publish($content)
+    public function publish($content, $path = '')
     {
-        $path = $this->configuration->getFilePath();
+        if (empty($path)) {
+            throw new \InvalidArgumentException('Path is mandatory!');
+        }
         $config = new Config();
         try {
             return $this->storage->write($path, $content, $config);

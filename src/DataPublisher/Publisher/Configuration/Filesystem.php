@@ -8,7 +8,7 @@ use League\Flysystem\Adapter\AbstractAdapter;
 class Filesystem extends AbstractConfiguration
 {
     /**
-     * @var League\Flysystem\Filesystem $storage
+     * @var \League\Flysystem\Filesystem $storage
      */
     protected $storage;
 
@@ -18,29 +18,18 @@ class Filesystem extends AbstractConfiguration
     protected $path;
 
     /**
-     * @param League\Flysystem\Adapter\AbstractAdapter $adapter
-     * @param string $path
+     * @param \League\Flysystem\Adapter\AbstractAdapter $adapter
      */
-    public function __construct(AbstractAdapter $adapter, $path)
+    public function __construct(AbstractAdapter $adapter)
     {
         $this->storage = new FilesystemStorage($adapter);
-        $this->path = $path;
     }
 
     /**
-     * @return League\Flysystem\Filesystem
+     * @return \League\Flysystem\Filesystem
      */
     public function getStorage()
     {
         return $this->storage;
     }
-
-    /**
-     * @return string
-     */
-    public function getFilePath()
-    {
-        return $this->path;
-    }
-
 }
