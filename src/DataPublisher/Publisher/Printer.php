@@ -13,6 +13,7 @@ class Printer extends AbstractPublisher
 
     /**
      * @param string $content
+     * @return bool
      */
     public function publish($content)
     {

@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 class Rest extends AbstractPublisher
 {
     /**
-     * @var GuzzleHttp\Client $client
+     * @var \GuzzleHttp\Client $client
      */
     private $client;
 
@@ -22,7 +22,7 @@ class Rest extends AbstractPublisher
     }
 
     /**
-     * @param GuzzleHttp\Client $client
+     * @param \GuzzleHttp\Client $client
      */
     public function setClient(Client $client)
     {
@@ -42,7 +42,7 @@ class Rest extends AbstractPublisher
 
     /**
      * @param string $content
-     * @return GuzzleHttp\Message\Request
+     * @return \GuzzleHttp\Message\Request
      */
     private function buildRequest($content)
     {
