@@ -45,7 +45,6 @@ class FilesystemPublisherTest extends \PHPUnit_Framework_TestCase
     public function getWritePublisherMock()
     {
         $adapter = new Local('/');
-        $configuration = new Configuration($adapter);
 
         $storage = $this->getStoreMock($adapter);
 
@@ -53,7 +52,7 @@ class FilesystemPublisherTest extends \PHPUnit_Framework_TestCase
             ->method('write')
             ->will($this->returnValue(true));
 
-        $configuration->setStorage($storage);
+        $configuration = new Configuration($storage);
 
         $publisher = new Publisher($configuration);
         return $publisher;
@@ -62,11 +61,10 @@ class FilesystemPublisherTest extends \PHPUnit_Framework_TestCase
     public function getInvalidExceptionPublisherMock()
     {
         $adapter = new Local('/');
-        $configuration = new Configuration($adapter);
 
         $storage = $this->getStoreMock($adapter);
 
-        $configuration->setStorage($storage);
+        $configuration = new Configuration($storage);
 
         $publisher = new Publisher($configuration);
         return $publisher;
@@ -75,7 +73,6 @@ class FilesystemPublisherTest extends \PHPUnit_Framework_TestCase
     public function getUpdatePublisherMock()
     {
         $adapter = new Local('/');
-        $configuration = new Configuration($adapter);
 
         $storage = $this->getStoreMock($adapter);
 
@@ -87,7 +84,7 @@ class FilesystemPublisherTest extends \PHPUnit_Framework_TestCase
             ->method('update')
             ->will($this->returnValue(true));
 
-        $configuration->setStorage($storage);
+        $configuration = new Configuration($storage);
 
         $publisher = new Publisher($configuration);
         return $publisher;

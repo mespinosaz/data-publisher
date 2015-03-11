@@ -2,13 +2,12 @@
 
 namespace mespinosaz\DataPublisher\Publisher\Configuration;
 
-use League\Flysystem\Filesystem as FilesystemStorage;
-use League\Flysystem\Adapter\AbstractAdapter;
+use League\Flysystem\FilesystemInterface;
 
 class Filesystem extends AbstractConfiguration
 {
     /**
-     * @var \League\Flysystem\Filesystem $storage
+     * @var FilesystemInterface
      */
     protected $storage;
 
@@ -18,17 +17,9 @@ class Filesystem extends AbstractConfiguration
     protected $path;
 
     /**
-     * @param \League\Flysystem\Adapter\AbstractAdapter $adapter
+     * @param FilesystemInterface $storage
      */
-    public function __construct(AbstractAdapter $adapter)
-    {
-        $this->storage = new FilesystemStorage($adapter);
-    }
-
-    /**
-     * @param FilesystemStorage $storage
-     */
-    public function setStorage(FilesystemStorage $storage)
+    public function __construct(FilesystemInterface $storage)
     {
         $this->storage = $storage;
     }
