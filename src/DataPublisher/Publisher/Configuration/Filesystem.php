@@ -7,7 +7,7 @@ use League\Flysystem\FilesystemInterface;
 class Filesystem extends AbstractConfiguration
 {
     /**
-     * @var \League\Flysystem\Filesystem $storage
+     * @var FilesystemInterface
      */
     protected $storage;
 
@@ -17,7 +17,7 @@ class Filesystem extends AbstractConfiguration
     protected $path;
 
     /**
-     * @param \League\Flysystem\Adapter\AbstractAdapter|FilesystemInterface $storage
+     * @param FilesystemInterface $storage
      */
     public function __construct(FilesystemInterface $storage)
     {
