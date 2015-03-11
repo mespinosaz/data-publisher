@@ -17,7 +17,7 @@ class Filesystem extends AbstractConfiguration
     protected $path;
 
     /**
-     * @param \League\Flysystem\Adapter\AbstractAdapter $storage
+     * @param \League\Flysystem\Adapter\AbstractAdapter|FilesystemInterface $storage
      */
     public function __construct(FilesystemInterface $storage)
     {
